@@ -9,21 +9,12 @@ import { loadWrapper } from "../../common/LoadingWrapper"
 class NewsComponent extends Component {
   renderComp = (location, match) => {
     let content = {}
-    
-    switch (location.pathname) {
-      case "/news/list":
-        content = <List {...this.props} />
-        break
-      case `/news/detail/${location.itemId}`:
-        content = <Detail {...this.props} itemId={location.itemId} />
-        break
-      /* case `/api/posts/${match.params.id}`:
-        content = <Edit {...this.props} itemId={match.params.id} />
-        break */
 
-      default:
-        content = <List {...this.props} />
-        break
+    if (location.pathname === `/news` || location.pathname === `/news/list`) {
+      content = <List {...this.props} />
+    }
+    if (location.pathname.indexOf(`/news/detail/`) > -1) {
+      content = <Detail {...this.props} itemId={location.itemId} />
     }
 
     return content
