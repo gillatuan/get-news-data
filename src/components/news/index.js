@@ -1,7 +1,9 @@
-import React, { Component } from "react"
+import React, { Component, Fragment } from "react"
 
 import List from "./List"
 import Detail from "./Detail"
+import SimpleTabs from "./tabs"
+
 import { loadWrapper } from "../../common/LoadingWrapper"
 
 // import "./posts.css"
@@ -11,7 +13,12 @@ class NewsComponent extends Component {
     let content = {}
 
     if (location.pathname === `/news` || location.pathname === `/news/list`) {
-      content = <List {...this.props} />
+      content = (
+        <Fragment>
+          <List {...this.props} />
+          <SimpleTabs {...this.props} />
+        </Fragment>
+      )
     }
     if (location.pathname.indexOf(`/news/detail/`) > -1) {
       content = <Detail {...this.props} itemId={location.itemId} />
