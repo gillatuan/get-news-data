@@ -1,17 +1,17 @@
 {
-  "name": "devconnector",
+  "name": "get-news-data-server",
   "version": "1.0.0",
-  "description": "Social network for developers",
+  "description": "Get news data demo",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "npm start --prefix client",
+    "client": "npm run start-win --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "author": "Brad Traversy",
+  "author": "TuanBDN",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
