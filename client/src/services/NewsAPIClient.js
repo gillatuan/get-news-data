@@ -8,9 +8,7 @@ import {
 
 const getNewsApi = async () => {
   return await axios
-    .get(
-      `${APP_API_URL_NEWS_LIST}&q=bitcoin&from=2019-12-30&sortBy=publishedAt&limit=20`
-    )
+    .get(`${APP_API_URL_NEWS_LIST}&q=bitcoin&limit=20`)
     .then(res => {
       return res.data
     })

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react"
 
-import List from "./List"
-import Detail from "./Detail"
+import { List } from "./List"
+import { Detail } from "./Detail"
 import SimpleTabs from "./tabs"
 
 import { loadWrapper } from "../common/LoadingWrapper"

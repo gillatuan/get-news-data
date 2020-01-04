@@ -8,7 +8,6 @@ import { logoutUser, setCurrentUser } from "./redux/actions/authActions"
 import { clearCurrentProfile } from "./redux/actions/profileActions"
 import "./css/App.css"
 
-import PrivateRoute from "./components/common/PrivateRoute"
 import ProgressBar from "./components/progress_bars/ProgressBar"
 import NewsComponent from "./components/news"
 import NotFound from "./components/not_found"
@@ -17,7 +16,6 @@ import Login from "./components/login/Login"
 
 // Check for token
 if (localStorage.jwtToken) {
-  debugger
   // Set auth token header auth
   setAuthToken(localStorage.jwtToken)
   // Decode token and get user info and exp

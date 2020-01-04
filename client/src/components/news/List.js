@@ -1,14 +1,43 @@
-import React, { Component } from "react"
+import React from "react"
 import { Typography, Grid } from "@material-ui/core"
-import { withStyles } from "@material-ui/core/styles"
 
+import NewsItem from "./NewsItem"
 import FrontendLayout from "../../layout/FrontendLayout"
+import { ListNewsHook } from "../../hooks/ListNewsHook"
 
 import { useStyles } from "./styles"
-import NewsAPIClient from "../../services/NewsAPIClient"
-import NewsItem from "./NewsItem"
 
-class List extends Component {
+const List = ({ history }) => {
+  // use Hook
+  const [items] = ListNewsHook()
+
+  const classes = useStyles()
+
+  const viewDetail = id => {
+    history.push({ pathname: `/news/detail/${id}`, itemId: id })
+  }
+
+  return (
+    <FrontendLayout>
+      <Typography component="div" gutterBottom variant="h4">
+        News List Demo
+      </Typography>
+
+      <Grid container spacing={5} style={{ padding: 5 }}>
+        {items.map((item, key) => (
+          <NewsItem
+            key={key}
+            item={item}
+            classes={classes}
+            viewDetail={() => viewDetail(key)}
+          />
+        ))}
+      </Grid>
+    </FrontendLayout>
+  )
+}
+
+/* class List extends Component {
   constructor(props) {
     super(props)
 
@@ -70,6 +99,6 @@ class List extends Component {
       </FrontendLayout>
     )
   }
-}
+} */
 
-export default withStyles(useStyles)(List)
+export { List }

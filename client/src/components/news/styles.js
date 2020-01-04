@@ -1,4 +1,6 @@
-export const useStyles = (theme) => ({
+import { makeStyles } from "@material-ui/core/styles"
+
+export const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
@@ -7,7 +9,7 @@ export const useStyles = (theme) => ({
     backgroundColor: theme.palette.background.paper
   },
   gridDetail: {
-    height: '100%'
+    height: "100%"
   },
   gridList: {},
   icon: {
@@ -18,13 +20,13 @@ export const useStyles = (theme) => ({
     width: "49% !important"
   },
   gridListTileDetail: {
-    height: 'auto',
-    flexShrink: 'unset',
+    height: "auto",
+    flexShrink: "unset",
 
-    '& img': {
-      height: 'auto',
-      left: 'unset',
-      transform: 'none'
+    "& img": {
+      height: "auto",
+      left: "unset",
+      transform: "none"
     }
   }
-})
+}))
