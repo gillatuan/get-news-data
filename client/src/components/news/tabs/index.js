@@ -65,10 +65,10 @@ const SimpleTabs = props => {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <TopHeadline />
+        <TopHeadline {...props} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <UserPreference />
+        <UserPreference {...props} />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Item Three

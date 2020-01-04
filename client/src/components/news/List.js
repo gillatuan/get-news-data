@@ -13,8 +13,8 @@ const List = ({ history }) => {
 
   const classes = useStyles()
 
-  const viewDetail = id => {
-    history.push({ pathname: `/news/detail/${id}`, itemId: id })
+  const viewDetail = url => {
+    history.push({ pathname: `/news/detail/${url}`, url })
   }
 
   return (
@@ -29,7 +29,7 @@ const List = ({ history }) => {
             key={key}
             item={item}
             classes={classes}
-            viewDetail={() => viewDetail(key)}
+            viewDetail={viewDetail}
           />
         ))}
       </Grid>

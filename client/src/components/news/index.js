@@ -21,7 +21,7 @@ class NewsComponent extends Component {
       )
     }
     if (location.pathname.indexOf(`/news/detail/`) > -1) {
-      content = <Detail {...this.props} itemId={location.itemId} />
+      content = <Detail {...this.props} url={location.url} />
     }
 
     return content

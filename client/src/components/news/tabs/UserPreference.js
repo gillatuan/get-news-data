@@ -17,8 +17,8 @@ const UserPreference = ({ history }) => {
 
   const classes = useStyles()
 
-  const viewDetail = id => {
-    history.push({ pathname: `/news/detail/${id}`, itemId: id })
+  const viewDetail = url => {
+    history.push({ pathname: `/news/detail/${url}`, url })
   }
 
   const options = ["bitcoin", "apple", "earthquake", "animal"]
