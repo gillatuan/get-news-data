@@ -1,34 +1,31 @@
-import React, { Fragment } from 'react'
-import { Grid, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
+import React, { Fragment } from "react"
+import {
+  Grid,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem
+} from "@material-ui/core"
 
-import { useStyles } from './styles'
-import { UserPreferenceNewsHook } from '../../../hooks/UserPreferenceNewsHook'
-import NewsItem from '../NewsItem'
+import { useStyles } from "./styles"
+import { UserPreferenceNewsHook } from "../../../hooks/UserPreferenceNewsHook"
+import NewsItem from "../NewsItem"
 
 const UserPreference = ({ history }) => {
   // use Hook
-  const [
-    items,
-    userPreference,
-    handleChangeUserPreference
-  ] = UserPreferenceNewsHook()
+  const [items, userPreference, handleChange] = UserPreferenceNewsHook()
 
   const classes = useStyles()
 
-  const viewDetail = (id) => {
+  const viewDetail = id => {
     history.push({ pathname: `/news/detail/${id}`, itemId: id })
   }
 
-  const options = ['bitcoin', 'apple', 'earthquake', 'animal']
+  const options = ["bitcoin", "apple", "earthquake", "animal"]
 
   return (
     <Fragment>
-      {renderOptions(
-        options,
-        classes,
-        userPreference,
-        handleChangeUserPreference
-      )}
+      {renderOptions(options, classes, userPreference, handleChange)}
       <Grid container spacing={5} style={{ padding: 5 }}>
         {items.map((item, key) => (
           <NewsItem
@@ -46,14 +43,12 @@ const UserPreference = ({ history }) => {
 const renderOptions = (options, classes, selectedOption, handleChange) => {
   return (
     <FormControl className={classes.formControl}>
-      <InputLabel id="demo-simple-select-label">
-        {selectedOption}
-      </InputLabel>
+      <InputLabel id="demo-simple-select-label">{selectedOption}</InputLabel>
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={selectedOption}
-        onChange={handleChange}
+        onChange={e => handleChange(e.target.value)}
       >
         {options.map((v, k) => {
           return (

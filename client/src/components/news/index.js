@@ -4,7 +4,7 @@ import List from "./List"
 import Detail from "./Detail"
 import SimpleTabs from "./tabs"
 
-import { loadWrapper } from "../../common/LoadingWrapper"
+import { loadWrapper } from "../common/LoadingWrapper"
 
 // import "./posts.css"
 
@@ -30,7 +30,9 @@ class NewsComponent extends Component {
   render() {
     const { location, match } = this.props
 
-    return <div className="item-model news">{this.renderComp(location, match)}</div>
+    return (
+      <div className="item-model news">{this.renderComp(location, match)}</div>
+    )
   }
 }
 

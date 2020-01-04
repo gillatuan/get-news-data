@@ -1,24 +1,22 @@
 // @flow
-import { useState, useEffect  } from 'react'
-import NewsAPIClient from '../services/NewsAPIClient'
+import { useState, useEffect } from "react"
+import NewsAPIClient from "../services/NewsAPIClient"
 
 const TopHeadlineNewsHook = () => {
   const [items, setItems] = useState([])
-    
+
   // get top headline news
   const getTopHeadlineNews = async () => {
     // get News list from api
-    const data = await NewsAPIClient.getTopHeadlineNewsApi()
-    setItems(data.articles)
+    return await NewsAPIClient.getTopHeadlineNewsApi()
   }
-  
+
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    // init Top Headline News 
-    getTopHeadlineNews()
-  }, [items]);
+    // init Top Headline News
+  }, [items])
 
-  return [items]
+  return [items, getTopHeadlineNews]
 }
 
 export { TopHeadlineNewsHook }

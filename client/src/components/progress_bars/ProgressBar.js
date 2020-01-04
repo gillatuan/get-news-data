@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography"
 
 import FrontendLayout from "../../layout/FrontendLayout"
 import BarAPIClient from "../../services/BarAPIClient"
-import Utils from "../../utils/Utils"
+import * as Utils from "../../utils/Utils"
 
 import { BorderLinearProgress, useStyles } from "./styles"
 
@@ -48,7 +48,7 @@ class ProgressBars extends Component {
     }
   }
 
-  onClick = (e) => {
+  onClick = e => {
     const { data, selectedOption } = this.state
 
     // set additional value of button
@@ -65,7 +65,7 @@ class ProgressBars extends Component {
     })
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       selectedOption: e.target.value
     })

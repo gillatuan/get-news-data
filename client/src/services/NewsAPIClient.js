@@ -1,44 +1,41 @@
-import axios from 'axios'
+import axios from "axios"
 //
 import {
   APP_API_URL_NEWS_LIST,
   APP_API_URL_TOP_HEADLINE_NEWS_LIST,
   APP_API_URL_USER_PREFERENCE_NEWS
-} from '../constants/api'
+} from "../constants/api"
 
-const getNewsApi = () => {
-  return axios
+const getNewsApi = async () => {
+  return await axios
     .get(
-      `${APP_API_URL_NEWS_LIST}&q=bitcoin&from=2019-12-30&sortBy=publishedAt`
+      `${APP_API_URL_NEWS_LIST}&q=bitcoin&from=2019-12-30&sortBy=publishedAt&limit=20`
     )
-    .then((res) => {
+    .then(res => {
       return res.data
     })
-    .catch((err) => {
-      debugger
-      return err
+    .catch(err => {
+      return err.response.data.message
     })
 }
-const getTopHeadlineNewsApi = () => {
-  return axios
-    .get(`${APP_API_URL_TOP_HEADLINE_NEWS_LIST}&country=us`)
-    .then((res) => {
+const getTopHeadlineNewsApi = async () => {
+  return await axios
+    .get(`${APP_API_URL_TOP_HEADLINE_NEWS_LIST}&country=ja&limit=20`)
+    .then(res => {
       return res.data
     })
-    .catch((err) => {
-      debugger
-      return err
+    .catch(err => {
+      return err.response.data.message
     })
 }
-const getUserPrefenceNews = (q) => {
-  return axios
+const getUserPrefenceNews = async q => {
+  return await axios
     .get(`${APP_API_URL_USER_PREFERENCE_NEWS}&q=${q}`)
-    .then((res) => {
+    .then(res => {
       return res.data
     })
-    .catch((err) => {
-      debugger
-      return err
+    .catch(err => {
+      return err.response.data.message
     })
 }
 

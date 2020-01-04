@@ -24,7 +24,6 @@ class Detail extends Component {
 
   componentDidMount = async () => {
     // fetch bars api
-    debugger
     const data = await NewsAPIClient.getNewsApi()
     if (typeof data !== "string") {
       const article = data.articles.find(
@@ -48,7 +47,7 @@ class Detail extends Component {
     return (
       <FrontendLayout>
         <Typography component="div" gutterBottom variant="h4">
-          News List Demo
+          News Detail {detail.title}
         </Typography>
 
         {detail && (
@@ -57,7 +56,10 @@ class Detail extends Component {
               {detail.title}
             </Typography>
             <Typography component="p" gutterBottom variant="h4">
-              original link: <a href={detail.url} target="_blank">{detail.url}</a>
+              original link:{" "}
+              <a href={detail.url} target="_blank">
+                {detail.url}
+              </a>
             </Typography>
             <GridListTile className={classes.gridListTileDetail}>
               <img src={detail.urlToImage} alt={detail.title} />
