@@ -1,6 +1,6 @@
-/* import { withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 import { connect } from "react-redux"
-import { mapStateToProps } from "../redux/reducers" */
+import { mapStateToProps } from "../redux/reducers"
 
 const PER_PAGE = 10
 
@@ -95,7 +95,9 @@ const redirectAfterAuthen = (auth, history) => {
   }
 }
 
-/* const routerConnect = (className, actions, processState) => {
+const delay = ms => new Promise(res => setTimeout(res, ms))
+
+const routerConnect = (className, actions, processState) => {
   return withRouter(
     connect(
       (state, props) => {
@@ -109,15 +111,16 @@ const redirectAfterAuthen = (auth, history) => {
       actions
     )(className)
   )
-} */
+}
 
 export {
   base64StringtoFile,
   convertFileSize,
+  delay,
   getBase64,
   getPaginatedItems,
   normalise,
   redirectAfterAuthen,
-  // routerConnect,
+  routerConnect,
   slugify
 }

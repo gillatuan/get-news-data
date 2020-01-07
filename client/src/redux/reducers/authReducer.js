@@ -1,6 +1,6 @@
-import { isEmpty } from "../../utils/validationLib"
+import { isEmpty } from '../../utils/validationLib'
 
-import { SET_CURRENT_USER } from "../../redux/actions/types"
+import { SET_CURRENT_USER } from '../../con'
 
 const initialState = {
   isAuthenticated: false,

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import './css/App.css'
 
-import ProgressBar from './components/progress_bars/ProgressBar'
+import Login from './components/login'
 import NewsComponent from './components/news'
 import NotFound from './components/not_found'
 
@@ -15,9 +15,9 @@ class App extends Component {
       <Router>
         <Switch>
           {/* <Route path='/register' component={Register} history={history} /> */}
-          {/* <Route path="/login" component={Login} history={history} /> */}
-          <Route path='/news' component={NewsComponent} history={history} />
-          <Route exact path='/' component={ProgressBar} history={history} />
+          {/* <Route exact path='/' component={ProgressBar} history={history} /> */}
+          <Route path="/login" component={Login} history={history} />
+          <Route path='/' component={NewsComponent} history={history} />
           <Route path='*' component={NotFound} history={history} />
         </Switch>
       </Router>
