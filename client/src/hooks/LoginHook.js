@@ -1,19 +1,32 @@
 // @flow
 import { useState, useEffect } from "react"
-import NewsAPIClient from "../services/NewsAPIClient"
 
 const LoginHook = props => {
-  const [detail, setDetail] = useState([])
+  const [state , setState] = useState({
+    email : "",
+    password : ""
+  })
+  debugger
 
   const initData = async () => {
-    if (!props.url) {
-      props.history.push({ pathname: `/news` })
-    }
-    // call api
-    const data = await NewsAPIClient.getNewsApi()
-    const detail = data.articles.find((item, key) => item.url === props.url)
+  }
 
-    setDetail(detail)
+  const onChange = (e) => {
+    const {name, value} = e.target
+    let messageErr = {}
+    let msgErr = ""
+
+    if (value === '') {
+      msgErr =  'This field is not empty'
+    }
+
+    setState(prevState => ({
+      ...prevState,
+      [name]: value,
+      messageErr: {
+        [name]: msgErr,
+      },
+    }))
   }
 
   // Similar to componentDidMount and componentDidUpdate:
@@ -22,7 +35,7 @@ const LoginHook = props => {
     initData()
   }, [])
 
-  return [detail, initData]
+  return [...state, initData]
 }
 
 export { LoginHook }
