@@ -4,7 +4,6 @@ import { all } from 'redux-saga/effects'
 import { watchLoginAsync } from './loginSaga'
 
 export function* rootSaga() {
-  debugger
   yield all([
     watchLoginAsync()
   ])

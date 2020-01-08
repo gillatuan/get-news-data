@@ -1,6 +1,7 @@
 import { withRouter } from "react-router-dom"
 import { connect } from "react-redux"
-import { mapStateToProps } from "../redux/reducers"
+import { mapStateToProps } from '../redux/reducers'
+import { matchActionsToProps } from '../redux/actions'
 
 const PER_PAGE = 10
 
@@ -108,7 +109,9 @@ const routerConnect = (className, actions, processState) => {
         if (result == null) result = {}
         return mapStateToProps(result, props)
       },
-      actions
+      (dispatch) => {
+        return matchActionsToProps(actions, dispatch)
+      }
     )(className)
   )
 }

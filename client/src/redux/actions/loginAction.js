@@ -1,8 +1,9 @@
+import { LOGIN_ASYNC } from '../../constants/types'
 
 // Set logged in user
 export const setCurrentUser = (decoded) => {
   return {
-    type: SET_CURRENT_USER,
+    type: LOGIN_ASYNC,
     payload: decoded,
   }
 }

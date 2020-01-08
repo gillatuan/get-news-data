@@ -1,4 +1,4 @@
-import { TOGGLE_LOADING, GET_ERRORS } from "./types"
+import { TOGGLE_LOADING, GET_ERRORS } from "../../constants/types"
 
 export const loading = (status) => {
 	return {

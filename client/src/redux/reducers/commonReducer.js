@@ -1,4 +1,4 @@
-import { CLEAR_ERRORS, GET_ERRORS, TOGGLE_LOADING } from "../actions/types"
+import { CLEAR_ERRORS, GET_ERRORS, TOGGLE_LOADING } from "../../constants/types"
 
 const initialState = { loadingStatus: false }
 

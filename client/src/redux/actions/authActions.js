@@ -2,7 +2,7 @@ import axios from "axios"
 import setAuthToken from "../../utils/setAuthToken"
 import jwt_decode from "jwt-decode"
 
-import { SET_CURRENT_USER } from "./types"
+import { SET_CURRENT_USER } from "../../constants/types"
 import { getError, loading } from "./commonActions"
 
 // Register User
