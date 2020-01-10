@@ -1,6 +1,6 @@
 import { isEmpty } from '../../utils/validationLib'
 
-import { LOGIN_ASYNC } from '../../constants/types'
+import * as TYPES from '../../constants/types'
 
 const initialState = {
   isAuthenticated: false,
@@ -9,13 +9,14 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case LOGIN_ASYNC:
-      debugger
+    case TYPES.LOGIN_PROGRESS:
       state = {
         ...state,
         isAuthenticated: !isEmpty(action.payload),
         user: action.payload
       }
+      break;
+    default:
       break;
   }
 

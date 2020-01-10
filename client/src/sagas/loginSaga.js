@@ -1,12 +1,12 @@
 import { put, takeLatest } from 'redux-saga/effects'
 import * as Utils from '../utils/Utils'
-import * as Types from '../constants/types'
+import * as TYPES from '../constants/types'
 
-export function* login() {
+export function* login(params) {
   yield Utils.delay(1000)
-  yield put({ type: Types.LOGIN_PROGRESS })
+  yield put({ ...params, type: TYPES.LOGIN_PROGRESS })
 }
 
 export function* watchLoginAsync() {
-  yield takeLatest(Types.LOGIN_ASYNC, login)
+  yield takeLatest(TYPES.LOGIN_ASYNC, login)
 }

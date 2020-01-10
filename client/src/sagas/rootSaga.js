@@ -1,10 +1,10 @@
-import { all } from 'redux-saga/effects'
+import { all, call } from 'redux-saga/effects'
 
 // import { ageDownAsync, ageUpAsync } from './saga'
 import { watchLoginAsync } from './loginSaga'
 
 export function* rootSaga() {
   yield all([
-    watchLoginAsync()
+    call(watchLoginAsync),
   ])
 }

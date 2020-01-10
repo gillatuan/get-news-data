@@ -1,41 +1,33 @@
 // @flow
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react'
 
-const LoginHook = props => {
-  const [state , setState] = useState({
-    email : "",
-    password : ""
+const LoginHook = (props) => {
+  const [state, setState] = useState({
+    email: '',
+    password: '',
+    messageErr: {
+      email: '',
+      password: ''
+    }
   })
-  debugger
 
-  const initData = async () => {
+  const onChangeHook = (data) => {
+    setState(data)
   }
 
-  const onChange = (e) => {
-    const {name, value} = e.target
-    let messageErr = {}
-    let msgErr = ""
-
-    if (value === '') {
-      msgErr =  'This field is not empty'
+  const initData = async () => {
+    if (props.isAuthenticated) {
+      props.history.push('/')
     }
-
-    setState(prevState => ({
-      ...prevState,
-      [name]: value,
-      messageErr: {
-        [name]: msgErr,
-      },
-    }))
   }
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     // init User preference news
     initData()
-  }, [])
+  }, [state])
 
-  return [...state, initData]
+  return { state, initData, onChangeHook }
 }
 
 export { LoginHook }

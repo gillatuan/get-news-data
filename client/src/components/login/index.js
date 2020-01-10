@@ -6,7 +6,7 @@ import {
   TextField,
   Button,
   FormControlLabel,
-  Checkbox,
+  Checkbox
 } from '@material-ui/core'
 import { Face, Fingerprint } from '@material-ui/icons'
 import { styles } from './styles'
@@ -17,57 +17,57 @@ import { LoginHook } from '../../hooks/LoginHook'
 
 const Login = (props) => {
   const classes = useStyles()
-  const {email, password} = LoginHook()
+  const { state, initData, onChangeHook } = LoginHook(props)
+
+  // check whether user is authenticated
+  initData()
+
+  const onChange = (e) => {
+    const { name, value } = e.target
+    let msgErr = ''
+    let data = {
+      ...state,
+      [name]: value,
+      messageErr: {
+        [name]: msgErr
+      }
+    }
+
+    if (value === '') {
+      msgErr = 'This field is not empty'
+      data = {
+        ...data,
+        messageErr: {
+          [name]: msgErr
+        }
+      }
+    }
+
+    // call hook
+    onChangeHook(data)
+  }
 
   const onSubmit = (e) => {
     e.preventDefault()
-
-    if (!email || !password) {
-      this.setState({
+    if (!state.email || !state.password) {
+      return onChangeHook({
         messageErr: {
           email: 'Email is not empty',
-          password: 'Password is not empty',
-        },
+          password: 'Password is not empty'
+        }
       })
-
-      return
     }
 
-    const userData = {
-      email,
-      password,
-    }
-
-    props.setCurrentUser(userData)
-  }
-
-  const onChange = (e) => {
-    if (e.target.value === '') {
-      this.setState({
-        [e.target.name]: e.target.value,
-        messageErr: {
-          [e.target.name]: 'This field is not empty',
-        },
-      })
-
-      return
-    }
-
-    this.setState({
-      [e.target.name]: e.target.value,
-      messageErr: {
-        [e.target.name]: '',
-      },
-    })
+    props.setCurrentUser({ ...state })
   }
 
   return (
-    <Paper className={ classes.paperRoot }>
-      <Grid container spacing={ 8 } alignItems="flex-end">
+    <Paper className={classes.paperRoot}>
+      <Grid container spacing={8} alignItems="flex-end">
         <Grid item>
-          <Face/>
+          <Face />
         </Grid>
-        <Grid item md={ true } sm={ true } xs={ true }>
+        <Grid item md={true} sm={true} xs={true}>
           <TextField
             autoFocus
             fullWidth
@@ -77,17 +77,17 @@ const Login = (props) => {
             placeholder="Email Address"
             required
             type="email"
-            value={ email }
-            onChange={ e => this.onChange(e) }
-            error={ messageErr.email }
+            value={state.email}
+            onChange={onChange}
+            error={state.messageErr && state.messageErr.email}
           />
         </Grid>
       </Grid>
-      <Grid container spacing={ 8 } alignItems="flex-end">
+      <Grid container spacing={8} alignItems="flex-end">
         <Grid item>
-          <Fingerprint/>
+          <Fingerprint />
         </Grid>
-        <Grid item md={ true } sm={ true } xs={ true }>
+        <Grid item md={true} sm={true} xs={true}>
           <TextField
             fullWidth
             id="password"
@@ -96,18 +96,16 @@ const Login = (props) => {
             name="password"
             required
             type="password"
-            value={ password }
-            onChange={ e => this.onChange(e) }
-            error={ messageErr.password }
-          />
-          <TextField
+            value={state.password}
+            onChange={onChange}
+            error={state.messageErr && state.messageErr.password}
           />
         </Grid>
       </Grid>
       <Grid container alignItems="center" justify="space-between">
         <Grid item>
           <FormControlLabel
-            control={ <Checkbox color="primary"/> }
+            control={<Checkbox color="primary" />}
             label="Remember me"
           />
         </Grid>
@@ -115,7 +113,7 @@ const Login = (props) => {
           <Button
             disableFocusRipple
             disableRipple
-            style={ {textTransform: 'none'} }
+            style={{ textTransform: 'none' }}
             variant="text"
             color="primary"
           >
@@ -123,13 +121,17 @@ const Login = (props) => {
           </Button>
         </Grid>
       </Grid>
-      <Grid container justify="center" style={ {marginTop: '10px'} }>
+      <Grid container justify="center" style={{ marginTop: '10px' }}>
         <Button
           color="primary"
-          disabled={ ((messageErr.email || messageErr.password) && true) || false }
-          style={ {textTransform: 'none'} }
+          disabled={
+            (state.messageErr &&
+              (state.messageErr.email || state.messageErr.password)) ||
+            false
+          }
+          style={{ textTransform: 'none' }}
           variant="outlined"
-          onClick={ e => this.onSubmit(e) }
+          onClick={onSubmit}
         >
           Login
         </Button>
@@ -140,10 +142,10 @@ const Login = (props) => {
 
 export default Utils.routerConnect(
   withStyles(styles)(Login),
-  {setCurrentUser},
+  { setCurrentUser },
   (state) => {
     return {
-      ...state.Login,
+      ...state.login
     }
-  },
+  }
 )
