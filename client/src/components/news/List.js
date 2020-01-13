@@ -24,7 +24,7 @@ const List = ({ history }) => {
       </Typography>
 
       <Grid container spacing={5} style={{ padding: 5 }}>
-        {items.map((item, key) => (
+        {items && items.map((item, key) => (
           <NewsItem
             key={key}
             item={item}

@@ -12,7 +12,7 @@ class NewsComponent extends Component {
   renderComp = (location, match) => {
     let content = {}
 
-    if (location.pathname === `/news` || location.pathname === `/news/list`) {
+    if (location.pathname === `/` || location.pathname === `/news/list`) {
       content = (
         <Fragment>
           <List {...this.props} />
