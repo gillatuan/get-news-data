@@ -1,14 +1,14 @@
-import React, { useState } from "react"
-import PropTypes from "prop-types"
-import AppBar from "@material-ui/core/AppBar"
-import Tabs from "@material-ui/core/Tabs"
-import Tab from "@material-ui/core/Tab"
-import Typography from "@material-ui/core/Typography"
-import Box from "@material-ui/core/Box"
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import AppBar from '@material-ui/core/AppBar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
 
-import { useStyles } from "./styles"
-import { TopHeadline } from "./TopHeadline"
-import { UserPreference } from "./UserPreference"
+import { useStyles } from './styles'
+import { TopHeadline } from './TopHeadline'
+import { UserPreference } from './UserPreference'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -36,13 +36,13 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`
+    'aria-controls': `simple-tabpanel-${index}`
   }
 }
 
-const SimpleTabs = props => {
-  const classes = useStyles()
+const SimpleTabs = (props) => {
   const [value, setValue] = useState(0)
+  const classes = useStyles()
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -69,9 +69,6 @@ const SimpleTabs = props => {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <UserPreference {...props} />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
       </TabPanel>
     </div>
   )

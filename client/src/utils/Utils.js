@@ -1,5 +1,7 @@
 import { withRouter } from "react-router-dom"
 import { connect } from "react-redux"
+import axios from "axios"
+
 import { mapStateToProps } from '../redux/reducers'
 import { matchActionsToProps } from '../redux/actions'
 
@@ -116,6 +118,16 @@ const routerConnect = (className, actions, processState) => {
   )
 }
 
+const setAuthToken = token => {
+  if (token) {
+    // Apply to every request
+    axios.defaults.headers.common['Authorization'] = token;
+  } else {
+    // Delete auth header
+    delete axios.defaults.headers.common['Authorization'];
+  }
+};
+
 export {
   base64StringtoFile,
   convertFileSize,
@@ -125,5 +137,6 @@ export {
   normalise,
   redirectAfterAuthen,
   routerConnect,
+  setAuthToken,
   slugify
 }

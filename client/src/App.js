@@ -6,6 +6,9 @@ import './css/App.css'
 import Login from './components/login'
 import NewsComponent from './components/news'
 import NotFound from './components/not_found'
+import PrivateRoute from './components/common/PrivateRoute'
+import Profile from './components/profile'
+import ProgressBar from './components/progress_bars/ProgressBar'
 
 class App extends Component {
   render() {
@@ -16,9 +19,21 @@ class App extends Component {
         <Switch>
           {/* <Route path='/register' component={Register} history={history} /> */}
           {/* <Route exact path='/' component={ProgressBar} history={history} /> */}
-          <Route path="/login" component={Login} history={history} />
-          <Route path='/' component={NewsComponent} history={history} />
-          <Route path='*' component={NotFound} history={history} />
+          <Route exact path="/login" component={Login} history={history} />
+          <PrivateRoute
+            exact
+            path="/api/profile"
+            component={Profile}
+            history={history}
+          />
+          <PrivateRoute
+            exact
+            path="/news"
+            component={NewsComponent}
+            history={history}
+          />
+          <Route exact path="/" component={ProgressBar} history={history} />
+          <Route path="*" component={NotFound} history={history} />
         </Switch>
       </Router>
     )

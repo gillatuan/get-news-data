@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
-import * as Auth from './authActions'
+// import * as Auth from './authActions'
 import * as Common from './commonActions'
 import * as Login from './loginAction'
 
@@ -18,4 +18,4 @@ export const matchActionsToProps = (actions, dispatch) => {
   return obj
 }
 
-export { Auth, Common, Login }
+export { Common, Login }

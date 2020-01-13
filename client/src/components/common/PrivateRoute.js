@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import PropTypes from "prop-types"
 
 import Spinner from "./Spinner"
-import Login from "../login/Login"
+import Login from '../login'
 import FrontendLayout from "../../layout/FrontendLayout"
 
 const PrivateRoute = ({
@@ -16,7 +16,7 @@ const PrivateRoute = ({
   const pathname = rest.location.pathname
 
   let isNeedToLogin = false
-  if (pathname.indexOf("/api") >= 0) {
+  if (pathname.indexOf("/api") >= 0 || pathname.indexOf("/news") >= 0) {
     isNeedToLogin = true
   }
 

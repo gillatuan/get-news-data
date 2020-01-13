@@ -17,10 +17,10 @@ import { LoginHook } from '../../hooks/LoginHook'
 
 const Login = (props) => {
   const classes = useStyles()
-  const { state, initData, onChangeHook } = LoginHook(props)
+  const { state, onChangeHook } = LoginHook(props)
 
   // check whether user is authenticated
-  initData()
+  // initData()
 
   const onChange = (e) => {
     const { name, value } = e.target
@@ -47,7 +47,7 @@ const Login = (props) => {
     onChangeHook(data)
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
     if (!state.email || !state.password) {
       return onChangeHook({
@@ -58,7 +58,13 @@ const Login = (props) => {
       })
     }
 
-    props.setCurrentUser({ ...state })
+    debugger
+    const userInfo = await props.setCurrentUser({
+      email: state.email,
+      password: state.password
+    })
+    debugger
+    Utils.redirectAfterAuthen(userInfo)
   }
 
   return (

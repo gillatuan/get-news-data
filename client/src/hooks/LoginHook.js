@@ -16,9 +16,7 @@ const LoginHook = (props) => {
   }
 
   const initData = async () => {
-    if (props.isAuthenticated) {
-      props.history.push('/')
-    }
+    debugger
   }
 
   // Similar to componentDidMount and componentDidUpdate:
